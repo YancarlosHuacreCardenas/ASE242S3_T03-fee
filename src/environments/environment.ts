@@ -1,4 +1,5 @@
 export const environment = {
   production: false,
-  apiUrl: 'http://localhost:8080/api'  // ← apunta directo al prefijo /api
+  apiUrl: 'http://18.206.206.149:8080/api'   // ✅ IP de tu EC2
 };
+

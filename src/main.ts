@@ -1,9 +1,18 @@
-import 'zone.js';  // 👈 obligatorio para Angular con Zone.js
+import 'zone.js';
 import { bootstrapApplication } from '@angular/platform-browser';
 import { provideRouter } from '@angular/router';
-import { routes } from './app/app.routes';
-import { AppComponent } from './app/app.component';
-import { appConfig } from './app/app.config';
+import { importProvidersFrom } from '@angular/core'; // 👈 OJO: esto faltaba
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 
-bootstrapApplication(AppComponent, appConfig)
-  .catch(err => console.error(err));
+import { AppComponent } from './app/app.component';
+import { routes } from './app/app.routes';
+
+bootstrapApplication(AppComponent, {
+  providers: [
+    provideRouter(routes),
+    importProvidersFrom(HttpClientModule, FormsModule, ReactiveFormsModule, CommonModule)
+  ]
+}).catch(err => console.error(err));
+
