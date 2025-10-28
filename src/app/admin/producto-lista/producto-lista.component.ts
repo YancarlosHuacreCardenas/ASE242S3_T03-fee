@@ -1,8 +1,8 @@
-import { Component, OnInit } from "@angular/core"
-import { CommonModule } from "@angular/common"
-import { RouterModule } from "@angular/router"
-import { ProductService } from "../../services/product.service"
-import { Product } from "../../models/product.model"
+import { Component, OnInit } from "@angular/core";
+import { CommonModule } from "@angular/common";
+import { RouterModule } from "@angular/router";
+import { ProductService } from "../../services/product.service";
+import { Product } from "../../models/product.model";
 
 @Component({
   selector: "app-producto-lista",
@@ -12,51 +12,68 @@ import { Product } from "../../models/product.model"
   styleUrls: ["./producto-lista.component.css"],
 })
 export class ProductoListaComponent implements OnInit {
-  products: Product[] = []
-  loading = false
-  error: string | null = null
+  products: Product[] = [];
+  loading = false;
+  error: string | null = null;
 
   constructor(private productService: ProductService) {}
 
   ngOnInit(): void {
-    this.loadProducts()
+    this.loadProducts();
   }
 
   loadProducts(): void {
-    this.loading = true
+    this.loading = true;
     this.productService.getProducts().subscribe({
       next: (data: Product[]) => {
-        this.products = data
-        this.loading = false
+        this.products = data;
+        this.loading = false;
       },
       error: () => {
-        this.error = "Error al cargar los productos"
-        this.loading = false
+        this.error = "Error al cargar los productos";
+        this.loading = false;
       },
-    })
+    });
   }
 
+  // Eliminar producto (cambia is_available a false)
   deleteProduct(id: number | undefined): void {
-    if (!id || !confirm("¿Está seguro de que desea eliminar este producto?")) return
+    if (!id || !confirm("¿Está seguro de que desea eliminar este producto?")) return;
 
     this.productService.deleteProduct(id).subscribe({
       next: () => {
-        this.products = this.products.filter((p) => p.product_id !== id)
+        const product = this.products.find(p => p.product_id === id);
+        if (product) product.is_available = false;
       },
       error: () => {
-        this.error = "Error al eliminar el producto"
+        this.error = "Error al eliminar el producto";
       },
-    })
+    });
   }
 
-  getCategoryLabel(category: string): string {
+  // Restaurar producto (cambia is_available a true)
+  restoreProduct(id: number | undefined): void {
+    if (!id) return;
+
+    this.productService.restoreProduct(id).subscribe({
+      next: (_) => { // Ignoramos el valor devuelto
+        const product = this.products.find(p => p.product_id === id);
+        if (product) product.is_available = true;
+      },
+      error: () => {
+        this.error = "Error al restaurar el producto";
+      },
+    });
+  }
+
+  getCategoryLabel(category: string | undefined): string {
     const categories: { [key: string]: string } = {
       HAM: "Hamburguesas",
       PIZ: "Pizzas",
       ENS: "Ensaladas",
       BEB: "Bebidas",
       POS: "Postres",
-    }
-    return categories[category] || category
+    };
+    return category ? categories[category] || category : "";
   }
 }

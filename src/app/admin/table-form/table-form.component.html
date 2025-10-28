@@ -1,0 +1,33 @@
+<div class="form-container">
+  <h2>{{ editing ? 'Editar Mesa' : 'Agregar Mesa' }}</h2>
+  <form [formGroup]="form" (ngSubmit)="submit()">
+    <label>Número de Mesa</label>
+    <input type="number" formControlName="tableNumber">
+
+    <label>Ubicación</label>
+    <input type="text" formControlName="location">
+
+    <label>Capacidad</label>
+    <input type="number" formControlName="capacity">
+
+    <label>Notas</label>
+    <textarea formControlName="notes"></textarea>
+
+    <label>Estado</label>
+    <select formControlName="status">
+      <option *ngFor="let s of statusOptions" [value]="s">{{ s }}</option>
+    </select>
+
+    <label>Última limpieza</label>
+    <input type="date" formControlName="lastClean">
+
+    <label>Hora de limpieza</label>
+    <input type="time" formControlName="cleaningTime">
+
+    <label>Detalles del layout</label>
+    <textarea formControlName="layoutDetails"></textarea>
+
+    <button type="submit">{{ editing ? 'Actualizar' : 'Agregar' }}</button>
+    <div class="error" *ngIf="error">{{ error }}</div>
+  </form>
+</div>

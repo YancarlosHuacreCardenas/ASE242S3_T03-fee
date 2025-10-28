@@ -1,1 +1,29 @@
-<p>contact-form works!</p>
+<section id="contact" class="contact-section">
+  <h2>Contáctanos</h2>
+  <p>¿Quieres reservar un evento o saber más? Escríbenos y te responderemos pronto.</p>
+
+  <form (ngSubmit)="enviarFormulario()" #contactForm="ngForm">
+    <input
+      type="text"
+      name="nombre"
+      [(ngModel)]="nombre"
+      placeholder="Tu nombre"
+      required
+    />
+    <input
+      type="email"
+      name="email"
+      [(ngModel)]="email"
+      placeholder="Tu correo"
+      required
+    />
+    <textarea
+      name="mensaje"
+      [(ngModel)]="mensaje"
+      placeholder="Tu mensaje"
+      required
+    ></textarea>
+
+    <button type="submit" class="btn">Enviar</button>
+  </form>
+</section>

@@ -1,22 +1,37 @@
 .hero {
-  background: linear-gradient(rgba(10, 37, 64, 0.7), rgba(10, 37, 64, 0.7)),
-              url('https://source.unsplash.com/1600x900/?rooftop,city') no-repeat center center/cover;
+  position: relative;
   height: 90vh;
+  background: linear-gradient(rgba(10, 37, 64, 0.6), rgba(10, 37, 64, 0.6)),
+              url('https://scontent-lim1-1.xx.fbcdn.net/v/t39.30808-6/474446858_1722074505019277_7236705793139836559_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=3a1ebe&_nc_eui2=AeHmGBjkkwfx8sl6ZZLkBGq6q8MKPKK9f6Srwwo8or1_pIrEoYdFLQTgDdyySxdRlFlk9IcGnMbSnlaxwnXi6RPs&_nc_ohc=k5fL1uEH3sQQ7kNvwE2Lj5c&_nc_oc=AdnPY6S6hxktclhVLyWlGrOLmb-noYhzzPC5FbXc3cyhbiHRHNNI8YPcvZMUXiq0tiA&_nc_zt=23&_nc_ht=scontent-lim1-1.xx&_nc_gid=CBdczWQt9dbqwKpJwYMJ6A&oh=00_Afe8dyjSnKbbVTogZfy9LeL5XYm5mNpZXOv7w0KzA1EOug&oe=6905845A')
+              center/cover no-repeat;
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
   color: white;
   text-align: center;
+  overflow: hidden;
 }
 
-.hero-content h1 {
+.hero-content {
+  z-index: 2;
+  animation: fadeInUp 1.2s ease-out;
+  max-width: 700px;
+  padding: 2rem;
+}
+
+.hero h1 {
   font-size: 3rem;
-  margin-bottom: 15px;
+  font-weight: bold;
+  margin-bottom: 1rem;
 }
 
-.hero-content p {
+.hero h1 span {
+  color: #00b4d8;
+}
+
+.hero p {
   font-size: 1.2rem;
-  margin-bottom: 25px;
+  margin-bottom: 2rem;
 }
 
 .btn {
@@ -25,9 +40,20 @@
   padding: 12px 25px;
   border-radius: 25px;
   text-decoration: none;
-  transition: background 0.3s;
+  transition: background 0.3s ease;
 }
 
 .btn:hover {
   background-color: #90e0ef;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }

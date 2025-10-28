@@ -1,33 +1,45 @@
-import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { Customer } from '../models/customer.model';
+import { Injectable } from "@angular/core";
+import { HttpClient } from "@angular/common/http";
+import { Observable } from "rxjs";
+import { Customer } from "../models/customer.model";
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root",
 })
 export class CustomerService {
-  private apiUrl = 'http://localhost:3000/customers'; // Cambia por tu endpoint real
+  // ⚙️ Cambia localhost si tu backend está desplegado en EC2 o una IP pública
+  private apiUrl = "http://localhost:8080/api/customers";
+
 
   constructor(private http: HttpClient) {}
 
-  getAll(): Observable<Customer[]> {
+  // Listar todos los clientes
+  getCustomers(): Observable<Customer[]> {
     return this.http.get<Customer[]>(this.apiUrl);
   }
 
-  addCustomer(customer: Customer): Observable<Customer> {
+  // Buscar cliente por ID
+  getCustomer(id: number): Observable<Customer> {
+    return this.http.get<Customer>(`${this.apiUrl}/${id}`);
+  }
+
+  // Crear nuevo cliente
+  createCustomer(customer: Customer): Observable<Customer> {
     return this.http.post<Customer>(this.apiUrl, customer);
   }
 
-  updateCustomer(customer: Customer): Observable<Customer> {
-    return this.http.put<Customer>(`${this.apiUrl}/${customer.id}`, customer);
+  // Actualizar cliente existente
+  updateCustomer(id: number, customer: Customer): Observable<Customer> {
+    return this.http.put<Customer>(`${this.apiUrl}/${id}`, customer);
   }
 
+  // Eliminación lógica
   deleteCustomer(id: number): Observable<void> {
-    return this.http.delete<void>(`${this.apiUrl}/${id}`);
+    return this.http.patch<void>(`${this.apiUrl}/${id}/eliminar`, {});
   }
 
-  restoreCustomer(id: number): Observable<Customer> {
-    return this.http.put<Customer>(`${this.apiUrl}/${id}/restore`, {});
+  // Restaurar cliente eliminado
+  restoreCustomer(id: number): Observable<void> {
+    return this.http.patch<void>(`${this.apiUrl}/${id}/restaurar`, {});
   }
 }

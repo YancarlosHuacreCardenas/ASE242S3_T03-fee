@@ -1,0 +1,32 @@
+<div class="table-lista-container">
+  <h2>Mesas</h2>
+
+  <button class="btn-add" (click)="nuevaMesa()">➕ Nueva Mesa</button>
+
+  <div class="error" *ngIf="error">{{ error }}</div>
+
+  <table>
+    <thead>
+      <tr>
+        <th>N° Mesa</th>
+        <th>Ubicación</th>
+        <th>Capacidad</th>
+        <th>Estado</th>
+        <th>Última limpieza</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let mesa of mesas">
+        <td>{{ mesa.tableNumber }}</td>
+        <td>{{ mesa.location }}</td>
+        <td>{{ mesa.capacity }}</td>
+        <td>{{ mesa.status }}</td>
+        <td>{{ mesa.lastClean | date }}</td>
+        <td>
+          <button class="btn-edit" (click)="editarMesa(mesa.tableId)">✏️ Editar</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

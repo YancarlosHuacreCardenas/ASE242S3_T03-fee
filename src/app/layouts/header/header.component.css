@@ -1,11 +1,18 @@
+/* ======== HEADER PRINCIPAL ======== */
 .header {
-  background-color: #0a2540;
-  color: white;
-  padding: 15px 0;
   position: sticky;
   top: 0;
   z-index: 1000;
   width: 100%;
+  background: rgba(10, 37, 64, 0.9); /* azul marino translúcido */
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+  transition: background 0.3s ease, box-shadow 0.3s ease;
+}
+
+.header.scrolled {
+  background: rgba(10, 37, 64, 0.98);
+  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.4);
 }
 
 .header .container {
@@ -14,60 +21,87 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding: 14px 0;
 }
 
-.logo {
-  font-size: 1.5rem;
-  font-weight: bold;
-  color: #00b4d8;
-}
-
-.nav a {
-  color: white;
+/* ======== LOGO ======== */
+.logo a {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #5cc9f5;
   text-decoration: none;
-  margin: 0 12px;
-  font-weight: 500;
-  transition: color 0.3s;
+  letter-spacing: 1px;
+  transition: color 0.3s ease;
 }
 
-.nav a:hover {
+.logo a:hover {
   color: #90e0ef;
 }
 
-.admin-link {
-  background: #00b4d8;
-  padding: 5px 12px;
-  border-radius: 8px;
-  font-weight: bold;
-}
-
+/* ======== NAV LINKS ======== */
 .nav {
   display: flex;
   align-items: center;
+  gap: 25px;
 }
 
 .nav a {
-  color: white;
+  color: #ffffff;
   text-decoration: none;
-  margin: 0 12px;
   font-weight: 500;
-  transition: color 0.3s;
+  font-size: 1rem;
+  position: relative;
+  transition: color 0.3s ease;
+}
+
+/* Efecto de línea azul al pasar el mouse */
+.nav a::after {
+  content: '';
+  position: absolute;
+  width: 0%;
+  height: 2px;
+  left: 0;
+  bottom: -5px;
+  background: #48cae4;
+  transition: width 0.3s ease;
 }
 
 .nav a:hover {
-  color: #90e0ef;
+  color: #48cae4;
 }
 
-.nav .admin-link {
-  margin-left: 20px;
-  background: #0077b6;
-  padding: 6px 14px;
-  border-radius: 6px;
-  font-weight: bold;
-  transition: background 0.3s;
+.nav a:hover::after {
+  width: 100%;
 }
 
-.nav .admin-link:hover {
-  background: #0096c7;
-  color: white;
+/* ======== BOTÓN ADMIN ======== */
+.admin-link {
+  background: linear-gradient(135deg, #0077b6, #00b4d8);
+  color: #ffffff;
+  padding: 7px 16px;
+  border-radius: 8px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 8px rgba(0, 180, 216, 0.3);
+}
+
+.admin-link:hover {
+  background: linear-gradient(135deg, #0096c7, #48cae4);
+  box-shadow: 0 0 14px rgba(72, 202, 228, 0.6);
+  transform: translateY(-2px);
+}
+
+/* ======== RESPONSIVE ======== */
+@media (max-width: 768px) {
+  .nav {
+    display: none; /* puedes luego reemplazar con un menú hamburguesa */
+  }
+
+  .header .container {
+    justify-content: space-between;
+  }
+
+  .logo a {
+    font-size: 1.5rem;
+  }
 }

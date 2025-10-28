@@ -1,0 +1,12 @@
+<section id="experience" class="experience-section">
+  <h2>Nuestras Experiencias</h2>
+  <div class="experience-grid">
+    <div class="experience-card" *ngFor="let exp of experiencias">
+      <img [src]="exp.imagen" [alt]="exp.titulo" />
+      <div class="card-content">
+        <h3>{{ exp.titulo }}</h3>
+        <p>{{ exp.descripcion }}</p>
+      </div>
+    </div>
+  </div>
+</section>

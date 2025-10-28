@@ -1,0 +1,66 @@
+<section class="reservas-section">
+  <div class="container">
+    <h2>Reserva tu Mesa</h2>
+    <p>Completa los datos para asegurar tu lugar en Altavista Rooftop 🍸</p>
+
+    <form (ngSubmit)="crearReserva()" #reservaForm="ngForm" class="formulario">
+
+      <!-- Nombre -->
+      <div class="form-group">
+        <label>Nombre</label>
+        <input type="text" [(ngModel)]="reserva.first_name" name="first_name" required />
+      </div>
+
+      <!-- Apellido -->
+      <div class="form-group">
+        <label>Apellido</label>
+        <input type="text" [(ngModel)]="reserva.last_name" name="last_name" required />
+      </div>
+
+      <!-- Teléfono -->
+      <div class="form-group">
+        <label>Teléfono</label>
+        <input type="text" [(ngModel)]="reserva.phone" name="phone" required />
+      </div>
+
+      <!-- Email -->
+      <div class="form-group">
+        <label>Correo Electrónico</label>
+        <input type="email" [(ngModel)]="reserva.email" name="email" required />
+      </div>
+
+      <!-- Fecha -->
+      <div class="form-group">
+        <label>Fecha de Reserva</label>
+        <input type="date" [(ngModel)]="reserva.fecha" name="fecha" required />
+      </div>
+
+      <!-- Hora -->
+      <div class="form-group">
+        <label>Hora</label>
+        <input type="time" [(ngModel)]="reserva.hora" name="hora" required />
+      </div>
+
+      <!-- Número de invitados -->
+      <div class="form-group">
+        <label>Número de invitados</label>
+        <input type="number" [(ngModel)]="reserva.guests" name="guests" required min="1" />
+      </div>
+
+      <!-- Mesa -->
+      <div class="form-group">
+        <label>Mesa disponible</label>
+        <select [(ngModel)]="reserva.mesa" name="mesa" required>
+          <option *ngFor="let mesa of mesasDisponibles" [value]="mesa.table_id">
+            Mesa {{ mesa.table_number }} - {{ mesa.location }} (Capacidad: {{ mesa.capacity }})
+          </option>
+        </select>
+      </div>
+
+      <!-- Botón -->
+      <button type="submit" [disabled]="!reservaForm.valid">Reservar Ahora</button>
+    </form>
+
+    <div *ngIf="mensaje" class="mensaje">{{ mensaje }}</div>
+  </div>
+</section>

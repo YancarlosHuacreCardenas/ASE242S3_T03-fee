@@ -1,1 +1,12 @@
-<p>team works!</p>
+<section id="team" class="team-section">
+  <h2>Equipo Responsable del Sistema Web</h2>
+  <div class="team-grid">
+    <div class="team-member" *ngFor="let integrante of integrantes">
+      <div class="team-img">
+        <img [src]="integrante.foto" [alt]="integrante.nombre" />
+      </div>
+      <h3>{{ integrante.nombre }}</h3>
+      <p class="cargo">{{ integrante.cargo }}</p>
+    </div>
+  </div>
+</section>

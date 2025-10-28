@@ -1,0 +1,70 @@
+.reservas-section {
+  padding: 4rem 2rem;
+  background: linear-gradient(180deg, #e3f2fd 0%, #caf0f8 100%);
+  text-align: center;
+}
+
+.reservas-section h2 {
+  color: #0a2540;
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.formulario {
+  max-width: 600px;
+  margin: 2rem auto;
+  background: #fff;
+  padding: 2rem;
+  border-radius: 16px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+}
+
+.form-group {
+  margin-bottom: 1.2rem;
+  text-align: left;
+}
+
+label {
+  display: block;
+  font-weight: 600;
+  color: #0a2540;
+  margin-bottom: 0.4rem;
+}
+
+input,
+select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: border-color 0.3s;
+}
+
+input:focus,
+select:focus {
+  border-color: #00b4d8;
+  outline: none;
+}
+
+button {
+  background: #0077b6;
+  color: white;
+  font-size: 1.1rem;
+  font-weight: bold;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+button:hover {
+  background: #0096c7;
+}
+
+.mensaje {
+  margin-top: 1rem;
+  font-weight: bold;
+  color: #0077b6;
+}
