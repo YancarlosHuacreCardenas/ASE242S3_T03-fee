@@ -1,0 +1,13 @@
+services:
+  frontend:
+    image: nayeliherreraalbino/altavista-frontend:1.0
+    container_name: front-end
+    ports:
+      - "4200:80"
+    networks:
+      - altavista-net
+    restart: unless-stopped
+
+networks:
+  altavista-net:
+    external: true

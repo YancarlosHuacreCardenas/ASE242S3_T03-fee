@@ -141,3 +141,38 @@
 .btn-delete:hover {
   background-color: #c82333;
 }
+
+/* --- NUEVO: barra de búsqueda y filtros --- */
+.filter-row {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.filter-row input,
+.filter-row select {
+  padding: 10px 12px;
+  font-size: 14px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  width: 100%;
+}
+
+.search-container {
+  position: relative;
+  flex: 1;
+}
+
+.search-container input {
+  padding-left: 35px;
+}
+
+.search-icon {
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 16px;
+  color: #666;
+}
+

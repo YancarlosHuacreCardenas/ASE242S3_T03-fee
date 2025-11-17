@@ -4,13 +4,42 @@
     <a routerLink="/admin/cliente-form" class="btn btn-primary">+ Nuevo Cliente</a>
   </div>
 
+  <!-- 🔍 BUSCADOR + FILTROS -->
+  <div class="filter-row">
+
+    <!-- Buscador -->
+    <input
+      type="text"
+      class="search-input"
+      placeholder="Buscar por nombre, apellido o email..."
+      [(ngModel)]="searchText"
+      (input)="applyFilters()"
+    />
+
+    <!-- Tipo -->
+    <select [(ngModel)]="filterType" (change)="applyFilters()">
+      <option value="">Todos los tipos</option>
+      <option value="V">VIP</option>
+      <option value="R">Regular</option>
+      <option value="N">Nuevo</option>
+    </select>
+
+    <!-- Estado -->
+    <select [(ngModel)]="filterStatus" (change)="applyFilters()">
+      <option value="">Todos</option>
+      <option value="true">Activos</option>
+      <option value="false">Inactivos</option>
+    </select>
+  </div>
+
   <div *ngIf="error" class="error-message">{{ error }}</div>
   <div *ngIf="loading" class="loading">Cargando clientes...</div>
-  <div *ngIf="!loading && customers.length === 0" class="empty-state">
+
+  <div *ngIf="!loading && filteredCustomers.length === 0" class="empty-state">
     <p>No hay clientes registrados</p>
   </div>
 
-  <table *ngIf="!loading && customers.length > 0" class="table">
+  <table *ngIf="!loading && filteredCustomers.length > 0" class="table">
     <thead>
       <tr>
         <th>ID</th>
@@ -22,18 +51,21 @@
         <th>Acciones</th>
       </tr>
     </thead>
+
     <tbody>
-      <tr *ngFor="let customer of customers">
+      <tr *ngFor="let customer of filteredCustomers">
         <td>{{ customer.customerId }}</td>
         <td>{{ customer.firstName }} {{ customer.lastName }}</td>
         <td>{{ customer.email }}</td>
         <td>{{ customer.phone }}</td>
         <td>{{ getClientTypeLabel(customer.clientType) }}</td>
+
         <td>
           <span [class.active]="customer.isActive" [class.inactive]="!customer.isActive">
-            {{ customer.isActive ? 'Activo' : 'Inactivo' }}
+            {{ customer.isActive ? "Activo" : "Inactivo" }}
           </span>
         </td>
+
         <td class="actions">
           <a [routerLink]="['/admin/cliente-form', customer.customerId]" class="btn-edit">Editar</a>
           <button (click)="deleteCustomer(customer.customerId)" class="btn-delete">Eliminar</button>

@@ -1,13 +1,14 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { ReservasComponent } from './reservas.component'; // <- nombre y archivo corregido
 
-describe('ReservasComponent', () => {
+import { ReservasComponent } from './reservas.component';
+
+describe('Reservas', () => {
   let component: ReservasComponent;
   let fixture: ComponentFixture<ReservasComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ReservasComponent] // <- se usa declarations, no imports
+      imports: [ReservasComponent]
     })
     .compileComponents();
 

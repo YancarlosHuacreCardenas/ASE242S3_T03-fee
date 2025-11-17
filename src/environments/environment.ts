@@ -1,4 +1,4 @@
 export const environment = {
-  production: false,
-  apiUrl: 'http://localhost:8080/api'  // ← apunta directo al prefijo /api
+  production: true,
+  API_URL: 'http://98.91.167.86:8080/api'  // tu IP pública
 };

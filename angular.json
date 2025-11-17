@@ -3,10 +3,16 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "altavista-fe": {
+    "Altavista": {
       "projectType": "application",
-      "schematics": {},
-      "root": "",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "css",
+          "flat": false,
+          "skipTests": false
+        }
+      },
+      "root": ".",
       "sourceRoot": "src",
       "prefix": "app",
       "architect": {
@@ -14,6 +20,9 @@
           "builder": "@angular/build:application",
           "options": {
             "browser": "src/main.ts",
+            "polyfills": [
+              "zone.js"
+            ],
             "tsConfig": "tsconfig.app.json",
             "assets": [
               {
@@ -21,18 +30,9 @@
                 "input": "public"
               }
             ],
-            "polyfills": [
-            "src/polyfills.ts"
-            ],
             "styles": [
-              "node_modules/@fortawesome/fontawesome-free/css/all.min.css",
               "src/styles.css"
-            ],
-            "server": "src/main.server.ts",
-            "outputMode": "server",
-            "ssr": {
-              "entry": "src/server.ts"
-            }
+            ]
           },
           "configurations": {
             "production": {
@@ -60,12 +60,16 @@
         },
         "serve": {
           "builder": "@angular/build:dev-server",
+            "options": {
+            "host": "0.0.0.0",
+            "port": 4200
+          },
           "configurations": {
             "production": {
-              "buildTarget": "altavista-fe:build:production"
+              "buildTarget": "Altavista:build:production"
             },
             "development": {
-              "buildTarget": "altavista-fe:build:development"
+              "buildTarget": "Altavista:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -76,6 +80,10 @@
         "test": {
           "builder": "@angular/build:karma",
           "options": {
+            "polyfills": [
+              "zone.js",
+              "zone.js/testing"
+            ],
             "tsConfig": "tsconfig.spec.json",
             "assets": [
               {
@@ -92,6 +100,6 @@
     }
   },
   "cli": {
-    "analytics": "7941550d-21d7-443e-b1f7-293d6e7ff989"
+    "analytics": "15b6c9e4-e2fc-4b95-af0c-9b710d23a59d"
   }
 }

@@ -6,16 +6,16 @@ import {
   ReactiveFormsModule,
 } from "@angular/forms";
 import { ActivatedRoute, Router } from "@angular/router";
-import { CustomerService } from "../../services/customer.service";
-import { Customer } from "../../models/customer.model";
+import { CustomerService } from "../../../services/customer.service";
+import { Customer } from "../../../models/customer.model";
 import { CommonModule } from "@angular/common";
 
 @Component({
   selector: "app-cliente-form",
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule],
-  templateUrl: "./cliente-form.component.html",
-  styleUrls: ["./cliente-form.component.css"],
+  templateUrl: "./customer-form.component.html",
+  styleUrls: ["./customer-form.component.css"],
 })
 export class ClienteFormComponent implements OnInit {
   form!: FormGroup;

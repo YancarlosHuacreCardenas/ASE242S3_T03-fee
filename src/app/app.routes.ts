@@ -9,13 +9,11 @@ import { ExperienceComponent } from './components/experience/experience.componen
 import { ReservasComponent } from './components/reservas/reservas.component';
 
 // Panel de administración
-import { AdminComponent } from './admin/admin.component';
-import { ClienteListaComponent } from './admin/cliente-lista/cliente-lista.component';
-import { ClienteFormComponent } from './admin/cliente-form/cliente-form.component';
-import { ProductoListaComponent } from './admin/producto-lista/producto-lista.component';
-import { ProductoFormComponent } from './admin/producto-form/producto-form.component';
-import { TableFormComponent } from './admin/table-form/table-form.component';
-import { TableListaComponent } from './admin/table-lista/table-lista.component';
+import { AdminComponent } from './pages/admin/admin.component';
+import { ClienteListaComponent } from './pages/admin/customer-list/customer-list.component';
+import { ClienteFormComponent } from './pages/admin/customer-form/customer-form.component';
+import { ProductoListaComponent } from './pages/admin/product-list/product-list.component';
+import { ProductoFormComponent } from './pages/admin/product-form/product-form.component';
 
 export const routes: Routes = [
   // Página principal
@@ -36,17 +34,18 @@ export const routes: Routes = [
       // Clientes
       { path: 'cliente-lista', component: ClienteListaComponent },
       { path: 'cliente-form', component: ClienteFormComponent },
-      { path: 'cliente-form/:id', component: ClienteFormComponent },
+      {
+        path: 'cliente-form/:id',
+        component: ClienteFormComponent
+      },
 
       // Productos
       { path: 'producto-lista', component: ProductoListaComponent },
       { path: 'producto-form', component: ProductoFormComponent },
-      { path: 'producto-form/:id', component: ProductoFormComponent },
-
-      // Mesas
-      { path: 'table-lista', component: TableListaComponent },       // Lista de mesas
-      { path: 'table-form', component: TableFormComponent },         // Agregar mesa
-      { path: 'table-form/:id', component: TableFormComponent },     // Editar mesa
+      {
+        path: 'producto-form/:id',
+        component: ProductoFormComponent
+      },
 
       // Redirección por defecto dentro del admin
       { path: '', redirectTo: 'cliente-lista', pathMatch: 'full' },
