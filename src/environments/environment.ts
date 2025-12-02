@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  API_URL: 'http://44.197.16.32:8080/api'  // tu IP pública
+  API_URL: 'http://13.220.64.76:8080/api'  // tu IP pública
 };
