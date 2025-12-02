@@ -1,12 +1,13 @@
 services:
   frontend:
-    image: nayeliherreraalbino/altavista-frontend:1.0
+    image: nayeliherreraalbino/altavista-frontend:4.0
     container_name: front-end
     ports:
-      - "4200:80"
+      - "4200:4200"
+    environment:
+      - API_URL=http://localhost:8081
     networks:
       - altavista-net
-    restart: unless-stopped
 
 networks:
   altavista-net:

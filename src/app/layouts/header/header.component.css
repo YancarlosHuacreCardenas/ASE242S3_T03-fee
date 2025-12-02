@@ -105,3 +105,11 @@
     font-size: 1.5rem;
   }
 }
+/* ======== LINK ACTIVO (página actual) ======== */
+.nav a.active {
+  color: #48cae4;
+}
+
+.nav a.active::after {
+  width: 100%;
+}

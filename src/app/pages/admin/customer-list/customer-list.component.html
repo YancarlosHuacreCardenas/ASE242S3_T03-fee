@@ -1,22 +1,13 @@
 <div class="lista-container">
   <div class="lista-header">
     <h2>Gestión de Clientes</h2>
-    <a routerLink="/admin/cliente-form" class="btn btn-primary">+ Nuevo Cliente</a>
+    <a routerLink="/admin-panel/cliente-form" class="btn btn-primary">+ Nuevo Cliente</a>
   </div>
 
-  <!-- 🔍 BUSCADOR + FILTROS -->
   <div class="filter-row">
+    <input type="text" class="search-input" placeholder="Buscar..."
+           [(ngModel)]="searchText" (input)="applyFilters()"/>
 
-    <!-- Buscador -->
-    <input
-      type="text"
-      class="search-input"
-      placeholder="Buscar por nombre, apellido o email..."
-      [(ngModel)]="searchText"
-      (input)="applyFilters()"
-    />
-
-    <!-- Tipo -->
     <select [(ngModel)]="filterType" (change)="applyFilters()">
       <option value="">Todos los tipos</option>
       <option value="V">VIP</option>
@@ -24,7 +15,6 @@
       <option value="N">Nuevo</option>
     </select>
 
-    <!-- Estado -->
     <select [(ngModel)]="filterStatus" (change)="applyFilters()">
       <option value="">Todos</option>
       <option value="true">Activos</option>
@@ -32,14 +22,7 @@
     </select>
   </div>
 
-  <div *ngIf="error" class="error-message">{{ error }}</div>
-  <div *ngIf="loading" class="loading">Cargando clientes...</div>
-
-  <div *ngIf="!loading && filteredCustomers.length === 0" class="empty-state">
-    <p>No hay clientes registrados</p>
-  </div>
-
-  <table *ngIf="!loading && filteredCustomers.length > 0" class="table">
+  <table *ngIf="filteredCustomers.length > 0" class="table">
     <thead>
       <tr>
         <th>ID</th>
@@ -61,14 +44,24 @@
         <td>{{ getClientTypeLabel(customer.clientType) }}</td>
 
         <td>
-          <span [class.active]="customer.isActive" [class.inactive]="!customer.isActive">
+          <span [class.active]="customer.isActive"
+                [class.inactive]="!customer.isActive">
             {{ customer.isActive ? "Activo" : "Inactivo" }}
           </span>
         </td>
 
         <td class="actions">
-          <a [routerLink]="['/admin/cliente-form', customer.customerId]" class="btn-edit">Editar</a>
-          <button (click)="deleteCustomer(customer.customerId)" class="btn-delete">Eliminar</button>
+          <a *ngIf="customer.isActive"
+             [routerLink]="['/admin-panel/cliente-form', customer.customerId]"
+             class="btn-edit">Editar</a>
+
+          <button *ngIf="customer.isActive"
+                  (click)="deleteCustomer(customer.customerId)"
+                  class="btn-delete">Eliminar</button>
+
+          <button *ngIf="!customer.isActive"
+                  (click)="restoreCustomer(customer.customerId)"
+                  class="btn-edit">Restaurar</button>
         </td>
       </tr>
     </tbody>

@@ -13,14 +13,13 @@ import { Customer } from "../../../models/customer.model";
   styleUrls: ["./customer-list.component.css"],
 })
 export class ClienteListaComponent implements OnInit {
-  
+
   customers: Customer[] = [];
   filteredCustomers: Customer[] = [];
 
-  // 🔍 Filtros
-  searchText: string = "";
-  filterType: string = "";
-  filterStatus: string = "";
+  searchText = "";
+  filterType = "";
+  filterStatus = "";
 
   loading = false;
   error: string | null = null;
@@ -35,19 +34,18 @@ export class ClienteListaComponent implements OnInit {
     this.loading = true;
 
     this.customerService.getCustomers().subscribe({
-      next: (data: Customer[]) => {
+      next: (data) => {
         this.customers = data;
-        this.filteredCustomers = data; // inicial
+        this.filteredCustomers = data;
         this.loading = false;
       },
       error: () => {
-        this.error = "Error al cargar los clientes";
+        this.error = "Error al cargar clientes";
         this.loading = false;
       },
     });
   }
 
-  // 🔎 APLICAR FILTROS
   applyFilters(): void {
     const search = this.searchText.toLowerCase();
 
@@ -61,8 +59,7 @@ export class ClienteListaComponent implements OnInit {
         this.filterType === "" || c.clientType === this.filterType;
 
       const matchesStatus =
-        this.filterStatus === "" ||
-        String(c.isActive) === this.filterStatus;
+        this.filterStatus === "" || String(c.isActive) === this.filterStatus;
 
       return matchesSearch && matchesType && matchesStatus;
     });
@@ -73,21 +70,29 @@ export class ClienteListaComponent implements OnInit {
 
     this.customerService.deleteCustomer(id).subscribe({
       next: () => {
-        this.customers = this.customers.filter((c) => c.customerId !== id);
-        this.applyFilters(); // actualizar lista filtrada
+        const found = this.customers.find(c => c.customerId === id);
+        if (found) found.isActive = false;
+        this.applyFilters();
       },
       error: () => {
-        this.error = "Error al eliminar cliente";
+        this.error = "Error al eliminar";
       },
     });
   }
 
+  restoreCustomer(id: number | undefined): void {
+    if (!id) return;
+
+    this.customerService.restoreCustomer(id).subscribe({
+      next: () => {
+        const found = this.customers.find(c => c.customerId === id);
+        if (found) found.isActive = true;
+        this.applyFilters();
+      }
+    });
+  }
+
   getClientTypeLabel(type: string): string {
-    const types: any = {
-      V: "VIP",
-      R: "Regular",
-      N: "Nuevo",
-    };
-    return types[type] || type;
+    return { V: "VIP", R: "Regular", N: "Nuevo" }[type] || type;
   }
 }

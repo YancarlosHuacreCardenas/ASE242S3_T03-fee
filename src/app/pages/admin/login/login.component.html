@@ -1,0 +1,19 @@
+<!-- Solo se muestra si isOpen es true -->
+<div class="login-overlay" *ngIf="isOpen">
+  <div class="login-container">
+    <button class="close-btn" (click)="close()">×</button>
+    <h2>Login Admin</h2>
+    <form (ngSubmit)="login()">
+      <div>
+        <label>Usuario:</label>
+        <input type="text" [(ngModel)]="username" name="username" required>
+      </div>
+      <div>
+        <label>Contraseña:</label>
+        <input type="password" [(ngModel)]="password" name="password" required>
+      </div>
+      <button type="submit">Ingresar</button>
+    </form>
+    <p class="error" *ngIf="errorMsg">{{ errorMsg }}</p>
+  </div>
+</div>

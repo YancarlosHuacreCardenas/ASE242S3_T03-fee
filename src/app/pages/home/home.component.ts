@@ -7,7 +7,6 @@ import { AboutUsComponent } from '../../components/about-us/about-us.component';
 import { TeamComponent } from '../../components/team/team.component';
 import { ContactFormComponent } from '../../components/contact-form/contact-form.component';
 import { ExperienceComponent } from '../../components/experience/experience.component';
-import { ReservasComponent } from '../../components/reservas/reservas.component';
 
 @Component({
   selector: 'app-home',
@@ -20,8 +19,7 @@ import { ReservasComponent } from '../../components/reservas/reservas.component'
     AboutUsComponent,
     TeamComponent,
     ContactFormComponent,
-    ExperienceComponent,
-    ReservasComponent
+    ExperienceComponent
   ],
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']

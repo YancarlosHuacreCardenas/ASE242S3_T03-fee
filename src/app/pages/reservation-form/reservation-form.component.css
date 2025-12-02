@@ -1,0 +1,117 @@
+/* MÁS ESPACIO ENTRE HEADER Y FORMULARIO */
+.page-wrapper {
+  padding-top: 40px;   /* espacio arriba */
+  padding-bottom: 40px; /* espacio abajo */
+}
+
+/* CONTENEDOR */
+.form-container {
+  max-width: 550px;
+  margin: 0 auto;
+  background: #ffffff;
+  padding: 40px;
+  border-radius: 20px;
+  box-shadow: 0 8px 25px rgba(0, 48, 120, 0.12);
+  border: 1px solid rgba(0, 48, 120, 0.10);
+}
+
+/* TITULOS */
+h2 {
+  text-align: center;
+  color: #0a3a66;
+  font-weight: 700;
+  margin-bottom: 25px;
+}
+
+h3 {
+  color: #0a3a66;
+  margin-top: 25px;
+  margin-bottom: 10px;
+  font-size: 1.15rem;
+  font-weight: 600;
+  border-left: 4px solid #0a3a66;
+  padding-left: 8px;
+}
+
+/* FORMULARIO */
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+/* INPUTS */
+input,
+textarea,
+select {
+  padding: 12px;
+  border-radius: 10px;
+  border: 1px solid #b4c7db;
+  transition: all 0.2s ease-in-out;
+  font-size: 0.95rem;
+  background: #f8fbff;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  outline: none;
+  border-color: #0d4d8b;
+  box-shadow: 0 0 6px rgba(13, 77, 139, 0.3);
+  background: #ffffff;
+}
+
+/* BOTÓN */
+.btn-save {
+  background: linear-gradient(135deg, #0a3a66, #0d4d8b);
+  color: white;
+  padding: 14px;
+  border: none;
+  border-radius: 12px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 25px;
+  transition: transform 0.15s ease, background 0.25s ease;
+  width: 100%;
+}
+
+.btn-save:hover {
+  transform: translateY(-2px);
+  background: linear-gradient(135deg, #0d4d8b, #0a3a66);
+}
+
+.btn-save:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* MENSAJES */
+.success-message {
+  background: #dfffe1;
+  color: #146c2e;
+  padding: 12px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  text-align: center;
+  font-weight: 600;
+  border: 1px solid #87d99a;
+}
+
+.error-message {
+  background: #ffe1e1;
+  color: #b30000;
+  padding: 12px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  text-align: center;
+  font-weight: 600;
+  border: 1px solid #ff9999;
+}
+
+/* ERRORES DE VALIDACIÓN */
+.error {
+  color: #d90429;
+  font-size: 0.85rem;
+  margin-top: -6px;
+}

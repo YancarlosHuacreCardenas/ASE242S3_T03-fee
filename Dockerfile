@@ -1,19 +1,15 @@
-# Etapa 1: Compilar la aplicación
-FROM node:22-alpine AS build
+FROM node:22-alpine
+
 WORKDIR /app
-COPY package*.json ./
+
+COPY package*.json /app
+
 RUN npm install
-COPY . .
-RUN npx ng build --configuration production
 
-# Etapa 2: Servir con Nginx
-FROM nginx:alpine
+COPY . /app
 
-# Copiamos el archivo de configuración personalizado de Nginx
-COPY nginx.conf /etc/nginx/conf.d/default.conf
+RUN npm run build --prod
 
-# Copiamos los archivos compilados de Angular
-COPY --from=build /app/dist/Altavista/browser /usr/share/nginx/html
+EXPOSE 4200
 
-EXPOSE 80
-CMD ["nginx", "-g", "daemon off;"]
+ENTRYPOINT ["npm", "start"]

@@ -1,0 +1,67 @@
+<section class="contact-section">
+  <div class="contact-container">
+
+    <!-- Flecha de retroceso: usa (click) para retroceder -->
+    <a class="back-arrow" (click)="goBack()" role="button" aria-label="Volver">
+      ← Volver
+    </a>
+
+    <div class="contact-info animate-left">
+      <h2>Contacto</h2>
+      <p class="subtitle">
+        Escríbenos para reservas, eventos o cualquier consulta.  
+        ¡Estamos para ayudarte!
+      </p>
+
+      <div class="info-box">
+        <h3>📍 Dirección</h3>
+        <p>Av. Altavista Rooftop – Lima, Perú</p>
+      </div>
+
+      <div class="info-box">
+        <h3>📞 Teléfono</h3>
+        <p>+51 987 654 321</p>
+      </div>
+
+      <div class="info-box">
+        <h3>📧 Correo</h3>
+        <p>contacto@altavistarooftop.pe</p>
+      </div>
+    </div>
+
+    <div class="contact-form animate-right">
+      <h3>Envíanos un mensaje</h3>
+
+      <!-- Nota: (ngSubmit) sigue para enviar; los botones 'type' controlan comportamiento -->
+      <form (ngSubmit)="sendMessage()" #contactForm="ngForm">
+        <div class="input-group">
+          <label>Nombre</label>
+          <input name="nombre" ngModel type="text" placeholder="Ingresa tu nombre" required>
+        </div>
+
+        <div class="input-group">
+          <label>Correo</label>
+          <input name="correo" ngModel type="email" placeholder="correo@ejemplo.com" required>
+        </div>
+
+        <div class="input-group">
+          <label>Mensaje</label>
+          <textarea name="mensaje" ngModel rows="4" placeholder="Escribe tu mensaje..." required></textarea>
+        </div>
+
+        <!-- Botones -->
+        <div class="buttons">
+          <!-- Enviar: type="submit" -> dispara (ngSubmit) -->
+          <button type="submit" class="btn-send">Enviar Mensaje</button>
+
+          <!-- Cancelar: type="button" para NO enviar el form; llama a goBack() -->
+          <button type="button" class="btn-cancel" (click)="goBack()">
+            Cancelar
+          </button>
+        </div>
+
+      </form>
+    </div>
+
+  </div>
+</section>

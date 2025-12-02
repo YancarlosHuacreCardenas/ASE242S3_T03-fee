@@ -43,22 +43,17 @@ export class ClienteFormComponent implements OnInit {
     });
   }
 
-  // ✅ Inicialización del formulario
   private initForm(): void {
     this.form = this.fb.group({
-      firstName: ["", [Validators.required, Validators.minLength(2)]],
-      lastName: ["", [Validators.required, Validators.minLength(2)]],
-      phone: ["", [Validators.required, Validators.pattern(/^[0-9]{9}$/)]],
-      email: ["", [Validators.required, Validators.email]],
-      preferences: [""],
-      clientType: ["N", Validators.required],
-      isActive: [true], // 👈 Campo de cliente activo
-      registeredAt: [""],
-      updatedAt: [""],
+      firstName: ['', [Validators.required, Validators.minLength(2)]],
+      lastName: ['', [Validators.required, Validators.minLength(2)]],
+      phone: ['', [Validators.required, Validators.pattern(/^[0-9]{9}$/)]],
+      email: ['', [Validators.required, Validators.email]],
+      preferences: [''],
+      clientType: ['N', Validators.required],
     });
   }
 
-  // ✅ Cargar cliente existente
   private loadCustomer(): void {
     if (!this.customerId) return;
     this.loading = true;
@@ -72,21 +67,16 @@ export class ClienteFormComponent implements OnInit {
           email: customer.email,
           preferences: customer.preferences,
           clientType: customer.clientType ?? "N",
-          isActive: customer.isActive ?? true,
-          registeredAt: customer.registeredAt,
-          updatedAt: customer.updatedAt,
         });
         this.loading = false;
       },
-      error: (err) => {
-        console.error("❌ Error al cargar cliente:", err);
+      error: () => {
         this.error = "Error al cargar el cliente.";
         this.loading = false;
       },
     });
   }
 
-  // ✅ Guardar o actualizar cliente
   onSubmit(): void {
     if (this.form.invalid) {
       this.form.markAllAsTouched();
@@ -94,10 +84,11 @@ export class ClienteFormComponent implements OnInit {
     }
 
     this.loading = true;
-    const customer: Customer = this.form.value;
 
-    // Aseguramos que `isActive` sea booleano
-    customer.isActive = !!customer.isActive;
+    const customer: Customer = {
+      ...this.form.value,
+      isActive: true
+    };
 
     const request = this.isEditing && this.customerId
       ? this.customerService.updateCustomer(this.customerId, customer)
@@ -106,18 +97,16 @@ export class ClienteFormComponent implements OnInit {
     request.subscribe({
       next: () => {
         this.loading = false;
-        this.router.navigate(["/admin/cliente-lista"]);
+        this.router.navigate(["/admin-panel/cliente-lista"]);
       },
-      error: (err) => {
-        console.error("❌ Error al guardar cliente:", err);
+      error: () => {
         this.error = "Error al guardar el cliente.";
         this.loading = false;
       },
     });
   }
 
-  // ✅ Cancelar acción
   onCancel(): void {
-    this.router.navigate(["/admin/cliente-lista"]);
+    this.router.navigate(["/admin-panel/cliente-lista"]);
   }
 }

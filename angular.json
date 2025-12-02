@@ -28,11 +28,17 @@
               {
                 "glob": "**/*",
                 "input": "public"
+              },
+              {
+                "glob": "**/*",
+                "input": "src/assets",
+                "output": "assets"
               }
             ],
-            "styles": [
-              "src/styles.css"
-            ]
+                "styles": [
+                  "src/styles.css",
+                  "node_modules/@fortawesome/fontawesome-free/css/all.min.css"
+                ]
           },
           "configurations": {
             "production": {
@@ -86,13 +92,19 @@
             ],
             "tsConfig": "tsconfig.spec.json",
             "assets": [
-              {
-                "glob": "**/*",
-                "input": "public"
-              }
-            ],
+            {
+              "glob": "**/*",
+              "input": "public"
+            },
+            {
+              "glob": "**/*",
+              "input": "src/assets",
+              "output": "assets"
+            }
+          ],
             "styles": [
-              "src/styles.css"
+              "src/styles.css",
+              "node_modules/@fortawesome/fontawesome-free/css/all.min.css"
             ]
           }
         }

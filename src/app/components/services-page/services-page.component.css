@@ -1,0 +1,243 @@
+/* ------------------------------ */
+/* SECCIÓN HERO */
+/* ------------------------------ */
+
+.hero {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 90px 70px;
+  gap: 60px;
+  background: url("../../../assets/altavista1.jpg") center/cover no-repeat;
+  min-height: 85vh;
+  overflow: hidden;
+}
+
+/* Capa oscura con degradado */
+.hero::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, rgba(5, 20, 40, 0.8), rgba(0, 80, 160, 0.65));
+  z-index: 1;
+}
+
+/* Contenido del hero */
+.hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 550px;
+  color: white;
+  animation: fadeInUp 1s ease forwards;
+}
+
+.hero-content h1 {
+  font-size: 3.5rem;
+  font-weight: 800;
+  line-height: 1.2;
+  margin-bottom: 20px;
+  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+}
+
+.hero-content p {
+  font-size: 1.3rem;
+  line-height: 1.6;
+  color: #e8e8e8;
+  margin-bottom: 30px;
+}
+
+/* Botón */
+.hero-btn {
+  background: #ffffff;
+  color: #003a80;
+  padding: 14px 38px;
+  font-size: 1.2rem;
+  border-radius: 12px;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  box-shadow: 0 5px 20px rgba(255, 255, 255, 0.25);
+  transition: 0.3s ease;
+}
+
+.hero-btn:hover {
+  background: #d8e8ff;
+  transform: scale(1.05);
+}
+
+/* Imagen del costado con glassmorphism */
+.hero-image-box {
+  position: relative;
+  z-index: 2;
+  padding: 18px;
+  border-radius: 22px;
+  backdrop-filter: blur(15px);
+  background: rgba(255, 255, 255, 0.08);
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  transition: 0.3s ease-in-out;
+}
+
+.hero-image-box:hover {
+  transform: translateY(-6px);
+}
+
+.hero-image-box img {
+  width: 460px;
+  border-radius: 18px;
+  box-shadow: 0 10px 35px rgba(0, 0, 0, 0.35);
+}
+
+/* Animación */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ------------------------------ */
+/* Responsive */
+/* ------------------------------ */
+@media (max-width: 1024px) {
+  .hero {
+    flex-direction: column;
+    text-align: center;
+    padding: 70px 30px;
+  }
+
+  .hero-image-box img {
+    width: 90%;
+  }
+
+  .hero-content h1 {
+    font-size: 2.8rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .hero-content h1 {
+    font-size: 2.3rem;
+  }
+
+  .hero-content p {
+    font-size: 1.1rem;
+  }
+}
+/* ------------------------------ */
+/* SECCIÓN DE SERVICIOS */
+/* ------------------------------ */
+.services-section {
+  text-align: center;
+  padding: 60px 40px;
+  background: #f7faff;
+}
+
+.services-section h2 {
+  font-size: 36px;
+  font-weight: 700;
+  color: #0a3a66;
+  margin-bottom: 35px;
+}
+
+.services-grid {
+  display: grid;
+  gap: 35px;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  padding: 0 10px;
+}
+
+.service-card {
+  background: white;
+  border-radius: 18px;
+  padding: 22px;
+  box-shadow: 0 6px 20px rgba(0, 48, 120, 0.1);
+  transition: 0.35s ease;
+  border-top: 5px solid #0a3a66;
+}
+
+.service-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 10px 28px rgba(0, 48, 120, 0.18);
+}
+
+.service-card img {
+  width: 100%;
+  height: 190px;
+  object-fit: cover;
+  border-radius: 14px;
+  margin-bottom: 15px;
+}
+
+.service-card h3 {
+  color: #0a3a66;
+  font-size: 22px;
+  margin-bottom: 8px;
+}
+
+/* ------------------------------ */
+/* BENEFICIOS */
+/* ------------------------------ */
+.beneficios {
+  background: #ffffff;
+  padding: 60px 40px;
+  text-align: center;
+}
+
+.beneficios h2 {
+  font-size: 32px;
+  color: #0a3a66;
+  margin-bottom: 25px;
+}
+
+.beneficios ul {
+  list-style: none;
+  padding: 0;
+  max-width: 500px;
+  margin: auto;
+}
+
+.beneficios li {
+  background: #e8f0ff;
+  padding: 14px 20px;
+  border-radius: 12px;
+  margin: 12px 0;
+  font-size: 18px;
+  color: #0a3a66;
+  font-weight: 500;
+  box-shadow: 0 4px 12px rgba(0, 48, 120, 0.1);
+}
+
+/* ------------------------------ */
+/* CTA FINAL */
+/* ------------------------------ */
+.cta {
+  text-align: center;
+  padding: 70px 40px;
+  background: linear-gradient(135deg, #0a3a66, #1e5799);
+  color: white;
+}
+
+.cta h2 {
+  font-size: 34px;
+  margin-bottom: 20px;
+}
+
+.btn-reservar {
+  background: #ffffff;
+  color: #0a3a66;
+  padding: 14px 35px;
+  font-size: 18px;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 5px 15px rgba(255, 255, 255, 0.25);
+  transition: 0.3s ease;
+}
+
+.btn-reservar:hover {
+  background: #dbe9ff;
+  transform: scale(1.05);
+}

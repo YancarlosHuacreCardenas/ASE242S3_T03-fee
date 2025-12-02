@@ -1,0 +1,77 @@
+<app-header></app-header>
+
+<div class="page-wrapper">
+
+  <div class="form-container">
+
+    <h2>Realizar Reserva</h2>
+
+    <!-- MENSAJE DE ÉXITO -->
+    <div *ngIf="success" class="success-message">
+      ✔ Reserva realizada con éxito. Nos comunicaremos con usted pronto.
+    </div>
+
+    <!-- MENSAJE DE ERROR GENERAL -->
+    <div *ngIf="error" class="error-message">
+      {{ error }}
+    </div>
+
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+
+      <h3>Datos del Cliente</h3>
+
+      <input formControlName="firstName" placeholder="Nombre" />
+      <span class="error" *ngIf="form.get('firstName')?.touched && form.get('firstName')?.invalid">
+        El nombre es obligatorio.
+      </span>
+
+      <input formControlName="lastName" placeholder="Apellido" />
+      <span class="error" *ngIf="form.get('lastName')?.touched && form.get('lastName')?.invalid">
+        El apellido es obligatorio.
+      </span>
+
+      <input formControlName="phone" placeholder="Teléfono" maxlength="9" />
+      <span class="error" *ngIf="form.get('phone')?.touched && form.get('phone')?.errors">
+        <ng-container *ngIf="form.get('phone')?.errors?.['required']">El teléfono es obligatorio.</ng-container>
+        <ng-container *ngIf="form.get('phone')?.errors?.['pattern']">Debe ser un número de 9 dígitos.</ng-container>
+      </span>
+
+      <input formControlName="email" placeholder="Correo" />
+      <span class="error" *ngIf="form.get('email')?.touched && form.get('email')?.errors">
+        <ng-container *ngIf="form.get('email')?.errors?.['required']">El correo es obligatorio.</ng-container>
+        <ng-container *ngIf="form.get('email')?.errors?.['email']">Ingrese un correo válido.</ng-container>
+      </span>
+
+      <textarea formControlName="preferences" placeholder="Preferencias"></textarea>
+
+      <h3>Datos de la Reserva</h3>
+
+      <input type="date" formControlName="reservationDate" />
+      <span class="error" *ngIf="form.get('reservationDate')?.touched && form.get('reservationDate')?.invalid">
+        Seleccione una fecha.
+      </span>
+
+      <input type="time" formControlName="reservationTime" />
+      <span class="error" *ngIf="form.get('reservationTime')?.touched && form.get('reservationTime')?.invalid">
+        Seleccione una hora.
+      </span>
+
+      <input type="number" formControlName="guestsCount" placeholder="Personas" min="1" />
+      <span class="error" *ngIf="form.get('guestsCount')?.touched && form.get('guestsCount')?.errors">
+        <ng-container *ngIf="form.get('guestsCount')?.errors?.['required']">Ingrese la cantidad de personas.</ng-container>
+        <ng-container *ngIf="form.get('guestsCount')?.errors?.['min']">Debe haber al menos 1 persona.</ng-container>
+      </span>
+
+      <textarea formControlName="notes" placeholder="Notas adicionales"></textarea>
+
+      <button type="submit" class="btn-save" [disabled]="loading">
+        {{ loading ? "Guardando..." : "Guardar Reserva" }}
+      </button>
+
+    </form>
+
+  </div>
+
+</div>
+
+<app-footer></app-footer>

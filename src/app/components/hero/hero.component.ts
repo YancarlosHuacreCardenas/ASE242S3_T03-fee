@@ -6,8 +6,9 @@ import { RouterModule } from '@angular/router';
   standalone: true,
   imports: [CommonModule, RouterModule],
   templateUrl: './hero.component.html',
-  styleUrl: './hero.component.css'
+  styleUrls: ['./hero.component.css']
 })
-export class HeroComponent {
 
+export class HeroComponent {
+  backgroundImage = `linear-gradient(rgba(10,37,64,0.6), rgba(10,37,64,0.6)), url('assets/rooftop.jpg')`;
 }
