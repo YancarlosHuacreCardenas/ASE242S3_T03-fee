@@ -8,7 +8,7 @@ import { Customer } from "../models/customer.model";
 })
 export class CustomerService {
   // URL base apuntando al backend
-  private apiUrl = "http://44.197.16.32:8080/api/customers";
+  private apiUrl = "http://13.220.64.76:8080/api/customers";
 
   constructor(private http: HttpClient) {}
 
